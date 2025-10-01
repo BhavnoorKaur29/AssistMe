@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';">
+
+    <title>Grocery Store</title>
+    <link rel="stylesheet" href="css/styles2.css">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        header {
+            background-color: #f8f8f8;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: center;
+            background-color: rgba(244, 98, 164, 0.8); 
+            width: 100%;
+            padding: 0;
+            flex-wrap: wrap;
+        }
+
+        .navbar a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-align: center;
+            transition: background-color 0.3s ease;
+            flex: 1;
+            font-weight: bold;
+            font-size: 1em;
+        }
+
+        .navbar a:hover {
+            animation: colorChange 3s infinite;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .product-list {
+            margin: 20px;
+            text-align: center;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .product-card {
+            border: 5px solid #1ac10a;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            background-color: #f9f9f9;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+        }
+
+        .product-card img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .cart, .checkout {
+            padding: 20px;
+        }
+
+        #cart-items {
+            list-style-type: none;
+            padding: 0;
+            border-top: 1px solid #ddd;
+            margin-top: 10px;
+        }
+
+        #cart-items li {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+
+        #checkout-button {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #checkout-button:hover {
+            background-color: #218838;
+        }
+
+        footer {
+            background-color: #f8f8f8;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        footer nav {
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+        }
+
+        footer .navbar {
+            background-color: rgba(244, 98, 164, 0.8);
+        }
+
+        footer p {
+            text-align: center;
+            padding: 10px;
+            margin: 0;
+            background-color: #333;
+            color: white;
+        }
+
+        @keyframes colorChange {
+            0% { background-color: #f7bb39; }
+            33% { background-color: #6772e9; }
+            66% { background-color: #4ff483; }
+            100% { background-color: #f98213; }
+        }
+         /* Dark Theme Styles */
+         body.dark {
+            background-color: #333;
+            color: white;
+        }
+
+        header.dark {
+            background-color: #444;
+        }
+
+        .navbar.dark {
+            background-color: rgba(244, 98, 164, 0.8);
+        }
+
+        .product-card.dark {
+            background-color: #555;
+            border-color: #1ac10a;
+        }
+
+        footer.dark {
+            background-color: #444;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .navbar a {
+                padding: 10px;
+                font-size: 0.9em;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar a {
+                padding: 8px;
+                font-size: 0.8em;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .toggle-theme {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: rgba(244, 98, 164, 0.8);
+            border: none;
+            border-radius: 50%;
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .toggle-theme:hover {
+            background-color: rgba(244, 98, 164, 1);
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div>
+        <img src="img/1.jpg" height="300px" width="1520px">
+    </div>
+    <div class="navbar">
+        <a href="/"><img src="img/22.png" alt="Home Icon" class="nav-icon"> Home</a>
+        <a href="/dashboard"><img src="img/24.png" alt="Services Icon" class="nav-icon"> Services</a>
+        <a href="/about"><img src="img/23.png" alt="About Us Icon" class="nav-icon"> About Us</a>
+        <a href="/reviews"><img src="img/26.png" alt="Reviews Icon" class="nav-icon"> Reviews & Ratings</a>
+        <a href="/login"><img src="img/25.png" alt="Sign In/Sign Up Icon" class="nav-icon"> Login</a>
+        <a href="/register"><img src="img/25.png" alt="Sign In/Sign Up Icon" class="nav-icon"> Register</a>
+        <a href="#" onclick="confirmLogout()"><img src="img/27.png" alt="Logout Icon" class="nav-icon"> Logout</a>
+    </div>
+</header>
+
+<main>
+    <button class="toggle-theme" onclick="toggleTheme()">🌙</button>
+    <!-- Product Listings -->
+    <section id="products" class="product-list">
+        <h2>FRUITS</h2>
+        <div class="product-grid"></div>
+        <h2>VEGETABLES</h2>
+        <div class="product-grid" id="vegetable-grid"></div>
+        <h2>DAIRY PRODUCTS</h2>
+        <div class="product-grid" id="dairy-grid"></div>
+        <h2>DRY FRUITS</h2>
+        <div class="product-grid" id="dry-fruits-grid"></div>
+    </section>
+
+    <!-- Shopping Cart -->
+    <section id="cart" class="cart">
+        <h2>Shopping Cart</h2>
+        <ul id="cart-items"></ul>
+        <p>Total: <span id="cart-total">₹0.00</span></p>
+    </section>
+
+    <!-- Checkout -->
+    <section id="checkout" class="checkout">
+        <h2>Checkout</h2>
+        <!-- <button id="checkout-button">Checkout</button> -->
+         <a href="/payment" id="checkout-button" onclick="checkout()" style="text-decoration: none" >Checkout</a>
+    </section>
+</main>
+
+<footer>
+    <nav>
+        <div class="navbar">
+            <a href="/"><img src="img/22.png" alt="Home Icon" class="nav-icon"> Home</a>
+        <a href="/dashboard"><img src="img/24.png" alt="Services Icon" class="nav-icon"> Services</a>
+        <a href="/about"><img src="img/23.png" alt="About Us Icon" class="nav-icon"> About Us</a>
+        <a href="/reviews"><img src="img/26.png" alt="Reviews Icon" class="nav-icon"> Reviews & Ratings</a>
+        <a href="/login"><img src="img/25.png" alt="Sign In/Sign Up Icon" class="nav-icon"> Login</a>
+        <a href="/register"><img src="img/25.png" alt="Sign In/Sign Up Icon" class="nav-icon"> Register</a>
+        <a href="#" onclick="confirmLogout()"><img src="img/27.png" alt="Logout Icon" class="nav-icon"> Logout</a>
+        </div>
+    </nav>
+    <p>© 2025 Grocery Store. All rights reserved.</p>
+</footer>
+
+<script>
+    // Product data
+    const fruits = [
+        { id: 1, name: "Apple", price: 100.00, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPDi7461mN2OuKTNi_W7yeRIk0khxb2GsOyg&amp;s" },
+        { id: 2, name: "Banana", price: 100.00, image: "https://www.shutterstock.com/image-photo/bunch-bananas-isolated-on-white-600nw-1722111529.jpg" },
+        { id: 3, name: "Orange", price: 80.00, image: "https://www.allrecipes.com/thmb/y_uvjwXWAuD6T0RxaS19jFvZyFU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1205638014-2000-d0fbf9170f2d43eeb046f56eec65319c.jpg" },
+        { id: 4, name: "Grapes", price: 160.00, image: "https://media.istockphoto.com/id/489520104/photo/green-grape-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=9kg_3pMeBKYnHHjx2JECF61QwzxTikLaQ2w-6A5tOO0=" },
+        { id: 5, name: "Pineapple", price: 240.00, image: "https://cdn.pixabay.com/photo/2020/04/29/12/47/pineapple-5108775_640.jpg" },
+        { id: 6, name: "Mango", price: 120.00, image: "https://cdn.pixabay.com/photo/2023/09/29/07/58/mango-8283268_1280.jpg" },
+        { id: 7, name: "Strawberry", price: 200.00, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDufJmXp9kaocGje0j3ewW8ft4GPuJCepPKGE79zSjzX4ALXyq" },
+        { id: 8, name: "Blueberry", price: 240.00, image: "https://images.unsplash.com/photo-1498557850523-fd3d118b962e?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Ymx1ZWJlcnJ5fGVufDB8fDB8fHww" },
+        { id: 9, name: "Peach", price: 98.00, image: "https://cdn.pixabay.com/photo/2017/08/11/17/41/peach-2632182_640.jpg" },
+        { id: 10, name: "Pear", price: 106.00, image: "https://media.istockphoto.com/id/1392312871/photo/many-fresh-ripe-pears-with-water-drops-as-background-closeup.jpg?s=612x612&w=0&k=20&c=_ztIYM8KXJHEC9S6Te24VjyRKyIosW5Tmzfme4IO-pU=" },
+        { id: 11, name: "Kiwi", price: 160.00, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0ldxcNoF34BRrO8zaBM7S4mcjRIXV3VF0gw&amp;s"},
+        { id: 12, name: "Raspberry", price: 287.00, image:"https://media.istockphoto.com/id/648967314/photo/raspberry-with-leaves-isolated-on-white-background.jpg?s=612x612&amp;w=0&amp;k=20&amp;c=tv_hnCyZYtY-RoUI-Mm875oMlcsF7toRjOp0lHYGVGc=" },
+        { id: 13, name: "Watermelon", price: 328.00, image: "https://thumbs.dreamstime.com/b/watermelon-13177659.jpg" },
+        { id: 14, name: "Apricot", price: 180.00, image:"https://media.istockphoto.com/id/172866907/photo/apricots.jpg?s=612x612&amp;w=0&amp;k=20&amp;c=mcVTie_Q0GzZm9Xw1KJ58IHGvMg1jdt9VT5kX3bVphs=" },
+        { id: 15, name: "Cherry", price: 240.00, image:"https://media.gettyimages.com/id/172315512/photo/sweet-cherries.jpg?s=612x612&amp;w=gi&amp;k=20&amp;c=4mWwTeU6KCVY0LMzJ0P1Cm86OpSWq1eU4tj5zJHRyvE="},
+        { id: 16, name: "Plum", price: 120.00, image:"https://t4.ftcdn.net/jpg/01/01/37/37/360_F_101373710_M7TBj7X8Su78CVjAQnsmPsULs8WTraq3.jpg" },
+    ];
+
+    const vegetables = [
+        { id: 17, name: "Carrot", price: 50.00, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSal5eASp-z5svpX0WouFDtdU3U-a3f-519A&s" },
+        { id: 18, name: "Broccoli", price: 60.00, image: "https://cdn.mos.cms.futurecdn.net/r8NK24bmcMgSib5zWKKQkW-1200-80.jpg" },
+        { id: 19, name: "Potato", price: 20.00, image: "https://cdn.mos.cms.futurecdn.net/iC7HBvohbJqExqvbKcV3pP-1200-80.jpg" },
+        { id: 20, name: "Tomato", price: 30.00, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSn_RpV_Nq_aND67ekZG9sOso6gv4AQatx2sw&s" },
+        { id: 21, name: "Cauliflower", price: 50.00, image: "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/cauliflower2-copy-3ab827f.jpg?resize=512%2C268" },
+        { id: 22, name: "Onion", price: 60.00, image: "https://akm-img-a-in.tosshub.com/lingo/ktak/images/story/202409/66d5ed6c8a749-onion-price-025259283-16x9.jpg" },
+        { id: 23, name: "Mushroom", price: 120.00, image: "https://5.imimg.com/data5/ANDROID/Default/2022/12/JK/ER/LX/71238191/product-jpeg-500x500.jpg" },
+        { id: 24, name: "Brinjal", price: 30.00, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJeNgVnlV1uh1ia1B10wN-k5d7bEh5b6FNLA&s" },
+        { id: 25, name: "Green Peas", price: 50.00, image: "https://www.pcrm.org/sites/default/files/2022-04/Peas.jpg" },
+        { id: 26, name: "Cabbage", price: 25.00, image: "https://www.jesmondfruitbarn.com.au/wp-content/uploads/2016/10/Jesmond-Fruit-Barn-Cabbage.jpg" },
+        { id: 27, name: "Bitter Gourd", price: 40.00, image: "https://images.deccanherald.com/deccanherald/import/sites/dh/files/article_images/2019/05/28/file70ypwbq2rvmddu4ke62-1558985401.jpg?w=1200&h=675&auto=format%2Ccompress&fit=max&enlarge=true" },
+        { id: 28, name: "Garlic", price: 50.00, image: "https://media6.ppl-media.com/mediafiles/blogs/Garlic_45b390b32a.webp" },
+        { id: 29, name: "Pumpkin", price: 50.00, image: "https://jaivikfood.com/wp-content/uploads/2015/06/green-pumpkin.jpg" },
+        { id: 30, name: "Corn", price: 60.00, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrm7NU-mNcBlS39eDjSelafYthU4ARZ8u4TA&s" },
+        { id: 31, name: "Lady's Finger", price: 40.00, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiG3TaaVlr-q0cJ8gsWYiKqWLJPphG3radjw&s" },
+        { id: 32, name: "Cucumber", price: 20.00, image: "https://www.greendna.in/cdn/shop/products/cucumber_1_700x.jpg?v=1594219681" },
+        // ... add more vegetable products if needed
+    ];
+
+    const dairyProducts = [
+    { id: 33, name: "Milk", price: 75.00, image: "https://cdn.pixabay.com/photo/2017/07/05/15/41/milk-2474993_640.jpg" },
+    { id: 34, name: "Paneer", price: 200.00, image: "https://cdn.pixabay.com/photo/2024/07/10/03/39/ai-generated-8884765_640.png" },
+    { id: 35, name: "Yogurt", price: 70.00, image: "https://media.istockphoto.com/id/515777808/photo/yogurt.jpg?s=612x612&w=0&k=20&c=1xNf2q0hmndqAbqyTUUv6F_GbBhhCZkGHbiOERz91LE=" },
+    { id: 36, name: "Butter", price: 150.00, image: "https://media.istockphoto.com/id/1935503926/photo/blocks-of-butter-close-up.jpg?s=2048x2048&w=is&k=20&c=UlHO-QNxlNhd64dab14ZHjTIlOEKStcw9K7hSvSHjjk=" },
+    // ... add more dairy products if needed
+];
+const dryFruits = [
+        { id: 37, name: "Almonds", price: 500.00, image: "https://tse2.mm.bing.net/th?id=OIP.KCUewIhJxFw9mF1RFdxHjwHaE8&pid=Api&P=0&h=180" },
+        { id: 38, name: "Cashews", price: 600.00, image: "https://www.thehealthy.com/wp-content/uploads/2020/11/GettyImages-609730096.jpg?resize=2048" },
+        { id: 39, name: "Walnuts", price: 700.00, image: "https://tse1.mm.bing.net/th?id=OIP.FaW_KLz4ezjWopPeSGJNNQHaE5&pid=Api&P=0&h=180" },
+        { id: 40, name: "Raisins", price: 400.00, image: "https://tse4.mm.bing.net/th?id=OIP.GJwg4B0IQwgaTeFAGOb9mgHaE6&pid=Api&P=0&h=180" },
+        // ... add more dry fruits if needed
+    ];
+   
+
+    // Select product grids
+    const fruitGrid = document.querySelector('.product-grid');
+    const vegetableGrid = document.getElementById('vegetable-grid');
+    const dairyGrid = document.getElementById('dairy-grid');
+    const dryFruitsGrid = document.getElementById('dry-fruits-grid');
+
+    // Function to populate product grids
+    function populateProducts(grid, products) {
+        products.forEach(product => {
+            const productCard = document.createElement('div');
+            productCard.classList.add('product-card');
+            productCard.innerHTML = `
+                <img src="${product.image}" alt="${product.name}">
+                <h3>${product.name}</h3>
+                <p>₹${product.price.toFixed(2)}</p>
+                <button onclick="addToCart(${product.id})">Add to Cart</button>
+            `;
+            grid.appendChild(productCard);
+        });
+    }
+
+    // Populate both grids
+    populateProducts(fruitGrid, fruits);
+    populateProducts(vegetableGrid, vegetables);
+    populateProducts(dairyGrid, dairyProducts);
+    populateProducts(dryFruitsGrid, dryFruits);
+
+    // Shopping cart functionality
+    const cart = [];
+    const cartItems = document.getElementById('cart-items');
+    const cartTotal = document.getElementById('cart-total');
+
+    function addToCart(productId) {
+        const allProducts = [...fruits, ...vegetables, ...dairyProducts, ...dryFruits];
+        const product = allProducts.find(p => p.id === productId);
+        if (product) {
+            cart.push(product);
+            updateCart();
+            showFeedback(`${product.name} added to cart`);
+        } else {
+            console.error('Product not found!');
+        }
+    }
+
+    function updateCart() {
+        cartItems.innerHTML = '';
+        let total = 0;
+
+        cart.forEach((product) => {
+            const listItem = document.createElement('li');
+            listItem.textContent = `${product.name} - ₹${product.price.toFixed(2)}`;
+            cartItems.appendChild(listItem);
+            total += product.price;
+        });
+
+        cartTotal.textContent = `₹${total.toFixed(2)}`;
+    }
+
+    document.getElementById('checkout-button').addEventListener('click', () => {
+        if (localStorage.getItem('currentUser')) {
+            alert('Proceeding to checkout...');
+            // Redirect or additional checkout logic here
+            cart.length = 0;
+            updateCart();
+        } else {
+            alert('You must be signed in to checkout.');
+            window.location.href = 'signin_signup.html'; // Redirect to sign-in/sign-up page
+        }
+    });
+    
+    function confirmLogout() {
+      const confirmation = confirm("Are you sure you want to log out?");
+      if (confirmation) {
+        window.location.href = '/logout';  // Redirect to the logout route
+      }
+    }
+</script>
+</body>
+</html>
+
+
+

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutor Services</title>
+    <link rel="stylesheet" href="css/styles2.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #f8f8f8;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: center;
+            background-color: rgba(244, 98, 164, 0.8); 
+            width: 100%;
+            padding: 0;
+            flex-wrap: wrap;
+        }
+
+        .navbar a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-align: center;
+            transition: background-color 0.3s ease;
+            flex: 1;
+            font-weight: bold;
+            font-size: 1em;
+        }
+
+        .navbar a:hover {
+            animation: colorChange 3s infinite;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .tutor-list {
+            margin: 20px;
+            text-align: center;
+        }
+
+        .tutor-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .tutor-card {
+            border: 5px solid #33aed0;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            background-color: #f9f9f9;
+            transition: transform 0.3s ease;
+        }
+
+        .tutor-card img {
+            max-width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .tutor-card button {
+            background-color: rgba(244, 98, 164, 0.8);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .tutor-card button:hover {
+            background-color: #33aed0;
+        }
+
+        .toggle-theme {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: rgba(244, 98, 164, 0.8);
+            border: none;
+            border-radius: 50%;
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .toggle-theme:hover {
+            background-color: rgba(244, 98, 164, 1);
+            transform: scale(1.1);
+        }
+
+        /* Media Queries for Responsive Design */
+        @media (max-width: 1024px) {
+            .tutor-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .tutor-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .navbar a {
+                font-size: 0.9em;
+                padding: 10px;
+            }
+
+            header img {
+                height: auto;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar a {
+                font-size: 0.8em;
+                padding: 8px;
+            }
+
+            .toggle-theme {
+                top: 10px;
+                right: 10px;
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div>
+                <img src="img/1.jpg" height="300px" width="1520px" alt="Banner Image">
+            </div>
+            <div class="navbar">
+                <a href="/"><img src="img/22.png" alt="Home Icon" class="nav-icon"> Home</a>
+                <a href="/dashboard"><img src="img/24.png" alt="Services Icon" class="nav-icon"> Services</a>
+                <a href="/about"><img src="img/23.png" alt="About Us Icon" class="nav-icon"> About Us</a>
+                <a href="/reviews"><img src="img/26.png" alt="Reviews Icon" class="nav-icon"> Reviews & Ratings</a>
+                <a href="/login"><img src="img/25.png" alt="Login Icon" class="nav-icon"> Login</a>
+                <a href="/register"><img src="img/25.png" alt="Register Icon" class="nav-icon"> Register</a>
+                <a href="#" onclick="confirmLogout()"><img src="img/27.png" alt="Logout Icon" class="nav-icon"> Logout</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <button class="toggle-theme" onclick="toggleTheme()">🌙</button>
+        <section class="tutor-list">
+            <h2>Available Tutors</h2>
+            <div class="tutor-grid"></div>
+        </section>
+    </main>
+
+    <footer>
+        <nav>
+            <div class="navbar">
+                <a href="/"><img src="img/22.png" alt="Home Icon" class="nav-icon"> Home</a>
+                <a href="/dashboard"><img src="img/24.png" alt="Services Icon" class="nav-icon"> Services</a>
+                <a href="/about"><img src="img/23.png" alt="About Us Icon" class="nav-icon"> About Us</a>
+                <a href="/reviews"><img src="img/26.png" alt="Reviews Icon" class="nav-icon"> Reviews & Ratings</a>
+                <a href="/login"><img src="img/25.png" alt="Login Icon" class="nav-icon"> Login</a>
+                <a href="/register"><img src="img/25.png" alt="Register Icon" class="nav-icon"> Register</a>
+                <a href="#" onclick="confirmLogout()"><img src="img/27.png" alt="Logout Icon" class="nav-icon"> Logout</a>
+            </div>
+        </nav>
+        <p>&copy; 2025 AssistMe</p>
+    </footer>
+
+    <script>
+        // Get tutor offers from local storage
+        const tutorOffers = JSON.parse(localStorage.getItem('tutorOffers')) || [];
+
+        // Render tutor cards
+        const tutorGrid = document.querySelector('.tutor-grid');
+
+        tutorOffers.forEach(tutor => {
+            const tutorCard = document.createElement('div');
+            tutorCard.classList.add('tutor-card');
+
+            const tutorImage = tutor.image || 'default-tutor-image.jpg';
+
+            tutorCard.innerHTML = `
+                <img src="${tutorImage}" alt="${tutor.name}">
+                <h3>${tutor.name}</h3>
+                <p>Subject: ${tutor.service}</p>
+                <p>Availability: ${tutor.availability}</p>
+                <p>Additional Info: ${tutor.details}</p>
+                <button onclick="redirectToPayment('${tutor.name}', '${tutor.service}')">Contact</button>
+            `;
+
+            tutorGrid.appendChild(tutorCard);
+        });
+
+        function redirectToPayment(tutorName, service) {
+            const paymentUrl = `payment.html?tutor=${encodeURIComponent(tutorName)}&service=${encodeURIComponent(service)}`;
+            window.location.href = paymentUrl;
+        }
+
+        function confirmLogout() {
+            const confirmation = confirm("Are you sure you want to log out?");
+            if (confirmation) {
+                window.location.href = '/logout';
+            }
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark');
+        }
+    </script>
+</body>
+</html>

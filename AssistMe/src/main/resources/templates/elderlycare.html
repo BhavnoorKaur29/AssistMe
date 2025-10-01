@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elderly Care Services</title>
+  <link rel="stylesheet" href="css/styles2.css">
+  <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        header {
+            background-color: #f8f8f8;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: center;
+            background-color: rgba(244, 98, 164, 0.8); 
+            width: 100%;
+            padding: 0;
+            flex-wrap: wrap;
+        }
+
+        .navbar a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-align: center;
+            transition: background-color 0.3s ease;
+            flex: 1;
+            font-weight: bold;
+            font-size: 1em;
+        }
+
+        .navbar a:hover {
+            animation: colorChange 3s infinite;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .care-list {
+            margin: 20px;
+            text-align: center;
+        }
+
+        .care-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .care-card {
+            border: 5px solid #33aed0;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            background-color: #f9f9f9;
+            transition: transform 0.3s ease;
+        }
+
+        .care-card:hover {
+            transform: scale(1.05);
+        }
+
+        .care-card img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .contact {
+            padding: 20px;
+            text-align: center;
+        }
+
+        #contact-button {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #contact-button:hover {
+            background-color: #218838;
+        }
+
+        footer {
+            background-color: #f8f8f8;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        footer nav {
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+        }
+
+        footer .navbar {
+            background-color: rgba(244, 98, 164, 0.8);
+        }
+
+        footer p {
+            text-align: center;
+            padding: 10px;
+            margin: 0;
+            background-color: #333;
+            color: white;
+        }
+
+        @keyframes colorChange {
+            0% { background-color: #f7bb39; }
+            33% { background-color: #6772e9; }
+            66% { background-color: #4ff483; }
+            100% { background-color: #f98213; }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .navbar a {
+                padding: 10px;
+                font-size: 0.9em;
+            }
+
+            .care-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar a {
+                padding: 8px;
+                font-size: 0.8em;
+            }
+
+            .care-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+  <div>
+    <img src="/img/1.jpg" height="300px" width="1520px">
+  </div>
+  <div class="navbar">
+    <a href="/"><img src="img/22.png" alt="Home Icon" class="nav-icon"> Home</a>
+    <a href="/dashboard"><img src="img/24.png" alt="Services Icon" class="nav-icon"> Services</a>
+    <a href="/about"><img src="img/23.png" alt="About Us Icon" class="nav-icon"> About Us</a>
+    <a href="/reviews"><img src="img/26.png" alt="Reviews Icon" class="nav-icon"> Reviews & Ratings</a>
+    <a href="/login"><img src="img/25.png" alt="Login Icon" class="nav-icon"> Login</a>
+    <a href="/register"><img src="img/25.png" alt="Register Icon" class="nav-icon"> Register</a>
+    <a href="#" onclick="confirmLogout()"><img src="img/27.png" alt="Logout Icon" class="nav-icon"> Logout</a>
+  </div>
+</header>
+
+<main>
+  <!-- Elderly Care Services Listings -->
+  <section id="care" class="care-list">
+    <h2>Available Elderly Care Services</h2>
+    <div class="care-grid"></div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <h2>Contact Us</h2>
+    <p>If you have any questions or need more information, feel free to reach out!</p>
+    <button id="contact-button">Get in Touch</button>
+  </section>
+</main>
+
+<footer>
+  <nav>
+    <div class="navbar">
+      <a href="/"><img src="img/22.png" alt="Home Icon" class="nav-icon"> Home</a>
+      <a href="/dashboard"><img src="img/24.png" alt="Services Icon" class="nav-icon"> Services</a>
+      <a href="/about"><img src="img/23.png" alt="About Us Icon" class="nav-icon"> About Us</a>
+      <a href="/reviews"><img src="img/26.png" alt="Reviews Icon" class="nav-icon"> Reviews & Ratings</a>
+      <a href="/login"><img src="img/25.png" alt="Login Icon" class="nav-icon"> Login</a>
+      <a href="/register"><img src="img/25.png" alt="Register Icon" class="nav-icon"> Register</a>
+      <a href="#" onclick="confirmLogout()"><img src="img/27.png" alt="Logout Icon" class="nav-icon"> Logout</a>
+    </div>
+  </nav>
+  <p>© 2025 Elderly Care Services. All rights reserved.</p>
+</footer>
+
+<script>
+  // Function to handle requesting an elderly care service
+  function requestService(email) {
+    window.location.href = `mailto:${email}`;
+  }
+
+  // Elderly care service data
+  const services = [
+    { id: 1, name: "Companionship", description: "Providing friendly companionship and assistance.", price: 500, image: "s1.png", email: "companionship@example.com" },
+    { id: 2, name: "Medication Assistance", description: "Help with managing and taking medications.", price: 600, image: "s2.png", email: "medication@example.com" },
+    { id: 3, name: "Personal Care", description: "Assistance with daily personal care needs.", price: 700, image: "s3.png", email: "personalcare@example.com" }
+  ];
+
+  // Render service cards dynamically
+  const careGrid = document.querySelector('.care-grid');
+  services.forEach(service => {
+    const careCard = document.createElement('div');
+    careCard.classList.add('care-card');
+    careCard.innerHTML = `
+      <img src="/img/${service.image}" alt="${service.name}">
+      <h3>${service.name}</h3>
+      <p>Description: ${service.description}</p>
+      <p>Price: ₹${service.price}/hour</p>
+      <button onclick="requestService('${service.email}')" aria-label="Request ${service.name} service">Request Service</button>
+    `;
+    careGrid.appendChild(careCard);
+  });
+</script>
+
+<!-- Global Script -->
+<script src="js/script.js"></script>
+</body>
+</html>

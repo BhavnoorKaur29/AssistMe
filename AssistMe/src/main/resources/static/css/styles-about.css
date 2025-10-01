@@ -1,0 +1,229 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    animation: fadeIn 2s ease-in-out;
+}
+
+header {
+    background-color: #f8f8f8;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.navbar-about {
+    display: flex;
+    justify-content: center;
+    background-color: rgba(244, 98, 164, 0.8); 
+    width: 100%;
+    padding: 0;
+}
+
+.navbar-about a {
+    color: white;
+    padding: 14px 20px;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    flex: 1;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+.navbar-about a:hover {
+    animation: colorChange 3s infinite;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+@keyframes colorChange {
+    0% { background-color: #f7bb39; }
+    33% { background-color: #6772e9; }
+    66% { background-color: #4ff483; }
+    100% { background-color: #f98213; }
+}
+
+main {
+    padding: 20px;
+}
+
+.hero-about {
+    text-align: center;
+    margin: 20px;
+}
+
+.hero-about h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    color: #000000;
+    animation: sparkle 1.5s infinite;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-weight: 700;
+}
+
+.hero-about p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    color: #090909;
+    font-weight: bold;
+    animation: sparkle 1.5s infinite;
+    font-family: 'Verdana', sans-serif;
+}
+
+.team-about {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.flip-card-about {
+    background-color: transparent;
+    width: 300px; /* Adjust as needed */
+    height: 300px; /* Adjust as needed */
+    perspective: 1000px;
+    display: inline-block;
+    margin: 20px;
+}
+
+.flip-card-inner-about {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.flip-card-about:hover .flip-card-inner-about {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front-about, .flip-card-back-about {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Arial', sans-serif;
+    color: white;
+}
+
+/* Front side of the flip card */
+.flip-card-front-about {
+    font-size: 1.1em;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+    background: linear-gradient(135deg, #f7bb39, #ff0b17); /* Gradient background */
+}
+
+/* Back side of the flip card */
+.flip-card-back-about {
+    background-color:white;
+    color: white;
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 1em;
+    font-weight: bold;
+    text-align: center;
+    border: 2px solid rgba(244, 98, 164, 1); /* Shiny pink border */
+}
+
+/* Headings and text on the back side */
+.flip-card-back-about h3 {
+    margin: 0;
+    font-size: 1.5em;
+    color: #333;
+    text-shadow: 1px 1px 3px rgba(255,255,255,0.8);
+}
+
+.flip-card-back-about p {
+    font-size: 1em;
+    margin: 0;
+    color: #090909;
+    text-align: center;
+}
+
+footer {
+    background-color: #f8f8f8;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+footer nav {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+footer .navbar-about {
+    background-color: rgba(244, 98, 164, 0.8);
+}
+
+footer p {
+    text-align: center;
+    padding: 10px;
+    margin: 0;
+    background-color: #333;
+    color: white;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .navbar-about {
+        flex-direction: column;
+    }
+
+    .flip-card-about {
+        width: 200px;
+        height: 200px;
+    }
+
+    .hero-about h1 {
+        font-size: 2em;
+    }
+
+    .hero-about p {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .flip-card-about {
+        width: 150px;
+        height: 150px;
+    }
+
+    .hero-about {
+        margin: 10px;
+    }
+
+    .hero-about h1 {
+        font-size: 1.5em;
+    }
+
+    .hero-about p {
+        font-size: 0.9em;
+    }
+
+    .navbar-about a {
+        padding: 10px;
+        font-size: 0.9em;
+    }
+}
+

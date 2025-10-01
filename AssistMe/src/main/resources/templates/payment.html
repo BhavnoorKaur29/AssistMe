@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Checkout</title>
+    <link rel="stylesheet" href="css/styles2.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border: 5px solid rgba(244, 98, 164, 0.8);
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: rgba(244, 98, 164, 0.8);
+        }
+
+        .payment-option {
+            margin: 15px 0;
+        }
+
+        .payment-option label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .payment-option input {
+            margin-right: 10px;
+        }
+
+        .payment-option img {
+            width: 30px;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        .button {
+            background-color: rgba(244, 98, 164, 0.8);
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: rgba(244, 98, 164, 1);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #cardDetails, #upiDetails {
+            display: none;
+        }
+
+        .payment-option input[type="text"], .payment-option select {
+            margin-bottom: 15px;
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav> 
+        <div>
+            <img src="img/1.jpg" height="300px" width="1520px">
+        </div>
+        <div class="navbar">
+            <a href="/"><img src="img/22.png" alt="Home Icon" class="nav-icon"> Home</a>
+            <a href="/dashboard"><img src="img/24.png" alt="Services Icon" class="nav-icon"> Services</a>
+            <a href="/about"><img src="img/23.png" alt="About Us Icon" class="nav-icon"> About Us</a>
+            <a href="/reviews"><img src="img/26.png" alt="Reviews Icon" class="nav-icon"> Reviews & Ratings</a>
+            <a href="/login"><img src="img/25.png" alt="Sign In/Sign Up Icon" class="nav-icon"> Login</a>
+            <a href="/register"><img src="img/25.png" alt="Sign In/Sign Up Icon" class="nav-icon"> Register</a>
+            <a href="#" onclick="confirmLogout()"><img src="img/27.png" alt="Logout Icon" class="nav-icon"> Logout</a>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <div class="container">
+        <h2>Checkout</h2>
+        <form id="paymentForm">
+            <div class="payment-option">
+                <label for="service">Select Service:</label>
+                <select id="service" name="service" required>
+                    <option value="grocery">Grocery Delivery</option>
+                    <option value="tutor">Tutoring Service</option>
+                    <option value="cleaning">Cleaning Service</option>
+                    <option value="childcare">Child Care</option>
+                    <option value="elderlycare">Elderly Care</option>
+                    <option value="petowner">Pet Owner Services</option>
+                </select>
+            </div>
+
+            <div class="payment-option">
+                <label>Payment Method:</label>
+                <input type="radio" id="cod" name="paymentMethod" value="cash" required>
+                <label for="cod"><img src="img/cod.png"> Cash on Delivery</label>
+
+                <input type="radio" id="card" name="paymentMethod" value="card" required>
+                <label for="card"><img src="img/credit_card.png"> Debit/Credit Card</label>
+
+                <input type="radio" id="mobileBanking" name="paymentMethod" value="mobileBanking" required>
+                <label for="mobileBanking"><img src="img/mobile_banking.png"> Mobile Banking</label>
+
+                <input type="radio" id="upi" name="paymentMethod" value="upi" required>
+                <label for="upi"><img src="img/Upi.png"> UPI (Paytm, GPay, etc.)</label>
+            </div>
+
+            <div class="payment-option" id="cardDetails">
+                <label for="cardNumber">Card Number:</label>
+                <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" required>
+
+                <label for="expiryDate">Expiry Date:</label>
+                <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/YY" maxlength="5" required>
+
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" name="cvv" placeholder="123" maxlength="3" required>
+            </div>
+
+            <div class="payment-option" id="upiDetails">
+                <label for="upiId">UPI ID:</label>
+                <input type="text" id="upiId" name="upiId" placeholder="example@upi" required>
+            </div>
+
+            <!-- Updated button -->
+            <button type="submit" class="button">Proceed to Payment</button>
+        </form>
+    </div>
+</main>
+
+<footer>
+    <nav>
+        <div class="navbar">
+            <a href="/"><img src="img/22.png" alt="Home Icon" class="nav-icon"> Home</a>
+            <a href="/dashboard"><img src="img/24.png" alt="Services Icon" class="nav-icon"> Services</a>
+            <a href="/about"><img src="img/23.png" alt="About Us Icon" class="nav-icon"> About Us</a>
+            <a href="/reviews"><img src="img/26.png" alt="Reviews Icon" class="nav-icon"> Reviews & Ratings</a>
+            <a href="/login"><img src="img/25.png" alt="Sign In/Sign Up Icon" class="nav-icon"> Login</a>
+            <a href="/register"><img src="img/25.png" alt="Sign In/Sign Up Icon" class="nav-icon"> Register</a>
+            <a href="#" onclick="confirmLogout()"><img src="img/27.png" alt="Logout Icon" class="nav-icon"> Logout</a>
+        </div>
+    </nav>
+    <p>&copy; 2025 AssistMe</p>
+</footer>
+
+<script>
+    const paymentForm = document.getElementById('paymentForm');
+    const cardDetails = document.getElementById('cardDetails');
+    const upiDetails = document.getElementById('upiDetails');
+
+    // Show or hide payment details based on selected payment method
+    paymentForm.addEventListener('change', (event) => {
+        if (event.target.name === 'paymentMethod') {
+            cardDetails.style.display = event.target.value === 'card' ? 'block' : 'none';
+            upiDetails.style.display = event.target.value === 'upi' ? 'block' : 'none';
+        }
+    });
+
+    // Redirect to thankyou page on form submit
+    paymentForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        window.location.href = "/thankyou";
+    });
+
+    function confirmLogout() {
+        const confirmation = confirm("Are you sure you want to log out?");
+        if (confirmation) {
+            window.location.href = '/logout';
+        }
+    }
+</script>
+
+</body>
+</html>

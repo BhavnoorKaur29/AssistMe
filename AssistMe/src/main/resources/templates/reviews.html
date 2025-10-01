@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reviews & Ratings</title>
+    <link rel="stylesheet" href="css/styles2.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6;
+            color: #333;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        header {
+            background-color: #ffffff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            padding: 10px 0;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: center;
+            background-color: rgba(244, 98, 164, 0.9);
+            width: 100%;
+            padding: 0;
+            flex-wrap: wrap;
+        }
+
+        .navbar a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-align: center;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            font-weight: bold;
+            font-size: 1em;
+        }
+
+        .navbar a:hover {
+            background-color: #ff6b81;
+            transform: scale(1.05);
+        }
+
+        main {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .form-container {
+            max-width: 800px;
+            margin: auto;
+            padding: 30px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .form-container h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            font-weight: 600;
+        }
+
+        .form-container form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-container input[type="text"],
+        .form-container input[type="number"],
+        .form-container textarea {
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            background-color: #f9f9f9;
+            transition: border-color 0.3s, background-color 0.3s;
+        }
+
+        .form-container input[type="text"]:focus,
+        .form-container input[type="number"]:focus,
+        .form-container textarea:focus {
+            border-color: rgba(244, 98, 164, 0.8);
+            background-color: #fff;
+            outline: none;
+        }
+
+        .form-container button {
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background-color: rgba(244, 98, 164, 0.8);
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .form-container button:hover {
+            background-color: rgba(244, 98, 164, 1);
+            transform: scale(1.02);
+        }
+
+        .review {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .review:hover {
+            transform: scale(1.02);
+        }
+
+        .review h3 {
+            margin: 0;
+            font-size: 1.3em;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .review p {
+            margin: 5px 0;
+            color: #666;
+        }
+
+        footer {
+            background-color: #ffffff;
+            box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        footer nav {
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+        }
+
+        footer .navbar {
+            background-color: rgba(244, 98, 164, 0.9);
+        }
+
+        footer p {
+            margin: 0;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+        }
+
+        /* Dark Theme Styles */
+        body.dark {
+            background-color: #333;
+            color: #f4f7f6;
+        }
+
+        body.dark .form-container {
+            background: #444;
+            color: #f4f7f6;
+        }
+
+        body.dark .form-container input[type="text"],
+        body.dark .form-container input[type="number"],
+        body.dark .form-container textarea {
+            background-color: #555;
+            border: 1px solid #888;
+            color: #f4f7f6;
+        }
+
+        body.dark .form-container button {
+            background-color: rgba(244, 98, 164, 1);
+            color: #333;
+        }
+
+        body.dark .review {
+            background-color: #444;
+            border-color: #888;
+        }
+
+        body.dark .review h3,
+        body.dark .review p {
+            color: #f4f7f6;
+        }
+
+        /* Toggle Button */
+        .toggle-theme {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: rgba(244, 98, 164, 0.8);
+            border: none;
+            border-radius: 50%;
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .toggle-theme:hover {
+            background-color: rgba(244, 98, 164, 1);
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav>
+        <div>
+            <img src="img/1.jpg" height="300px" width="1520px" alt="Header Image">
+        </div>
+        <div class="navbar">
+            <a href="/"><img src="img/22.png" alt="Home Icon" class="nav-icon"> Home</a>
+            <a href="/dashboard"><img src="img/24.png" alt="Services Icon" class="nav-icon"> Services</a>
+            <a href="/about"><img src="img/23.png" alt="About Us Icon" class="nav-icon"> About Us</a>
+            <a href="/reviews"><img src="img/26.png" alt="Reviews Icon" class="nav-icon"> Reviews & Ratings</a>
+            <a href="/login"><img src="img/25.png" alt="Login Icon" class="nav-icon"> Login</a>
+            <a href="/register"><img src="img/25.png" alt="Register Icon" class="nav-icon"> Register</a>
+            <a href="#" onclick="confirmLogout()"><img src="img/27.png" alt="Logout Icon" class="nav-icon"> Logout</a>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <button class="toggle-theme" onclick="toggleTheme()">🌙</button>
+    <section class="form-section">
+        <div class="form-container">
+            <h2>Submit a Review</h2>
+            <form id="reviewForm">
+                <input type="text" id="name" placeholder="Name" required>
+                <input type="number" id="rating" min="1" max="5" placeholder="Rating (1 to 5)" required>
+                <textarea id="reviewText" placeholder="Review" rows="4" required></textarea>
+                <button type="submit">Submit Review</button>
+            </form>
+        </div>
+
+        <div class="form-container">
+            <h2>Reviews</h2>
+            <div id="reviewsContainer"></div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <nav>
+        <div class="navbar">
+            <a href="/"><img src="img/22.png" alt="Home Icon" class="nav-icon"> Home</a>
+            <a href="/dashboard"><img src="img/24.png" alt="Services Icon" class="nav-icon"> Services</a>
+            <a href="/about"><img src="img/23.png" alt="About Us Icon" class="nav-icon"> About Us</a>
+            <a href="/reviews"><img src="img/26.png" alt="Reviews Icon" class="nav-icon"> Reviews & Ratings</a>
+            <a href="/login"><img src="img/25.png" alt="Login Icon" class="nav-icon"> Login</a>
+            <a href="/register"><img src="img/25.png" alt="Register Icon" class="nav-icon"> Register</a>
+            <a href="#" onclick="confirmLogout()"><img src="img/27.png" alt="Logout Icon" class="nav-icon"> Logout</a>
+        </div>
+    </nav>
+    <p>&copy; 2025 Assist Me. All rights reserved.</p>
+</footer>
+
+<script>
+    // Dark mode toggle
+    function toggleTheme() {
+        document.body.classList.toggle('dark');
+        localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+    }
+
+    // Load saved theme
+    window.onload = function () {
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark');
+        }
+        loadReviews();
+    };
+
+    // Load reviews from localStorage
+    function loadReviews() {
+        const reviews = JSON.parse(localStorage.getItem('reviews')) || [];
+        const reviewContainer = document.getElementById('reviewsContainer');
+        reviewContainer.innerHTML = "";
+
+        reviews.forEach(review => {
+            const stars = '★★★★★☆☆☆☆☆'.slice(5 - review.rating, 10 - review.rating);
+            const reviewElement = document.createElement('div');
+            reviewElement.className = 'review';
+            reviewElement.innerHTML = `
+                <h3>${review.name}</h3>
+                <p>Rating: ${stars}</p>
+                <p>${review.text}</p>
+            `;
+            reviewContainer.prepend(reviewElement);
+        });
+    }
+
+    // Save new review
+    document.getElementById('reviewForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const name = document.getElementById('name').value.trim();
+        const rating = parseInt(document.getElementById('rating').value);
+        const reviewText = document.getElementById('reviewText').value.trim();
+
+        if (name && rating && reviewText) {
+            const newReview = { name, rating, text: reviewText };
+            const reviews = JSON.parse(localStorage.getItem('reviews')) || [];
+            reviews.push(newReview);
+            localStorage.setItem('reviews', JSON.stringify(reviews));
+
+            loadReviews();
+            document.getElementById('reviewForm').reset();
+        }
+    });
+
+    // Dummy logout confirmation
+    function confirmLogout() {
+        if (confirm("Are you sure you want to logout?")) {
+            window.location.href = "/logout";
+        }
+    }
+</script>
+</body>
+</html>

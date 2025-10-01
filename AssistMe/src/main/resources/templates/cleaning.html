@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cleaning Services</title>
+    <link rel="stylesheet" href="css/styles2.css">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            animation: fadeIn 2s ease-in-out;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #f8f8f8;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: center;
+            background-color: rgba(244, 98, 164, 0.8);
+            width: 100%;
+            padding: 0;
+            flex-wrap: wrap;
+        }
+
+        .navbar a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-align: center;
+            transition: background-color 0.3s ease;
+            flex: 1;
+            font-weight: bold;
+            font-size: 1em;
+        }
+
+        .navbar a:hover {
+            animation: colorChange 3s infinite;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .service-list {
+            margin: 20px;
+            text-align: center;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .service-card {
+            border: 5px solid #1ac10a;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            background-color: #f9f9f9;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: scale(1.05);
+        }
+
+        .service-card img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        footer {
+            background-color: #f8f8f8;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        footer nav {
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+        }
+
+        footer .navbar {
+            background-color: rgba(244, 98, 164, 0.8);
+        }
+
+        footer p {
+            text-align: center;
+            padding: 10px;
+            margin: 0;
+            background-color: #333;
+            color: white;
+        }
+
+        @keyframes colorChange {
+            0% { background-color: #f7bb39; }
+            33% { background-color: #6772e9; }
+            66% { background-color: #4ff483; }
+            100% { background-color: #f98213; }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .navbar a {
+                padding: 10px;
+                font-size: 0.9em;
+            }
+
+            .service-grid {
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
+
+        /* New Section Styles */
+        #contact {
+            background-color: #fff;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        #contact h2 {
+            color: #2f2f2f;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            max-width: 500px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+
+        .contact-form button {
+            padding: 10px 20px;
+            background-color: #f49ac2;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+            font-weight: bold;
+        }
+
+        .contact-form button:hover {
+            background-color: #f7bb39;
+        }
+
+        /* Comment Section */
+        #comments-section {
+            background-color: #fff;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        #comments-section h2 {
+            color: #2f2f2f;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .comment-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .comment-form input, .comment-form textarea {
+            width: 100%;
+            max-width: 500px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+
+        .comment-form button {
+            padding: 10px 20px;
+            background-color: #f49ac2;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+            font-weight: bold;
+        }
+
+        .comment-form button:hover {
+            background-color: #f7bb39;
+        }
+
+        .comments-display {
+            margin-top: 20px;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .comment-card {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .comment-card p {
+            font-size: 1em;
+            color: #555;
+        }
+
+    </style>
+</head>
+<body>
+<header>
+    <div>
+        <img src="img/1.jpg" height="300px" width="1520px" alt="AssistMe Banner">
+    </div>
+    <div class="navbar">
+        <a href="/"><img src="img/22.png" alt="Home Icon" class="nav-icon"> Home</a>
+        <a href="/dashboard"><img src="img/24.png" alt="Services Icon" class="nav-icon"> Services</a>
+        <a href="/about"><img src="img/23.png" alt="About Us Icon" class="nav-icon"> About Us</a>
+        <a href="/reviews"><img src="img/26.png" alt="Reviews Icon" class="nav-icon"> Reviews & Ratings</a>
+        <a href="/login"><img src="img/25.png" alt="Sign In/Sign Up Icon" class="nav-icon"> Login</a>
+        <a href="/register"><img src="img/25.png" alt="Sign In/Sign Up Icon" class="nav-icon"> Register</a>
+        <a href="#" onclick="confirmLogout()"><img src="img/27.png" alt="Logout Icon" class="nav-icon"> Logout</a>
+    </div>
+</header>
+
+<main>
+    <!-- Service Listings -->
+    <section id="services" class="service-list">
+        <h2>Cleaning Services</h2>
+        <div class="service-grid">
+            <div class="service-card">
+                <img src="img/c1.jpeg" alt="Basic Cleaning">
+                <h3>Basic Cleaning</h3>
+                <p>Affordable and efficient cleaning for homes and offices. Includes dusting, vacuuming, and mopping.</p>
+                <button onclick="requestService('basic-cleaning')">Request Service</button>
+            </div>
+            <div class="service-card">
+                <img src="img/c2.jpg" alt="Deep Cleaning">
+                <h3>Deep Cleaning</h3>
+                <p>Thorough cleaning for a spotless environment. Includes carpet cleaning, window washing, and more.</p>
+                <button onclick="requestService('deep-cleaning')">Request Service</button>
+            </div>
+            <div class="service-card">
+                <img src="img/c3.webp" alt="Office Cleaning">
+                <h3>Office Cleaning</h3>
+                <p>Specialized cleaning for office spaces. Ensures a professional and clean workspace.</p>
+                <button onclick="requestService('office-cleaning')">Request Service</button>
+            </div>
+            <div class="service-card">
+                <img src="img/c4.jpg" alt="Move-In/Out Cleaning">
+                <h3>Move-In/Out Cleaning</h3>
+                <p>Comprehensive cleaning for new or vacated properties. Get your space ready to move in or move out.</p>
+                <button onclick="requestService('move-in-out-cleaning')">Request Service</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comment Section -->
+    <section id="comments-section">
+        <h2>Leave a Comment</h2>
+        <div class="comment-form">
+            <input type="text" id="userName" placeholder="Your Name" required>
+            <textarea id="userComment" placeholder="Your Comment" rows="5" required></textarea>
+            <button onclick="submitComment()">Submit Comment</button>
+        </div>
+        <div class="comments-display" id="commentsDisplay"></div>
+    </section>
+
+    <!-- Contact Us Section -->
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <form class="contact-form">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" rows="5" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+</main>
+
+<footer>
+    <nav>
+        <div class="navbar">
+            <a href="/"><img src="img/22.png" alt="Home Icon" class="nav-icon"> Home</a>
+            <a href="/dashboard"><img src="img/24.png" alt="Services Icon" class="nav-icon"> Services</a>
+            <a href="/about"><img src="img/23.png" alt="About Us Icon" class="nav-icon"> About Us</a>
+            <a href="/reviews"><img src="img/26.png" alt="Reviews Icon" class="nav-icon"> Reviews & Ratings</a>
+            <a href="/login"><img src="img/25.png" alt="Sign In/Sign Up Icon" class="nav-icon"> Login</a>
+            <a href="/register"><img src="img/25.png" alt="Sign In/Sign Up Icon" class="nav-icon"> Register</a>
+            <a href="#" onclick="confirmLogout()"><img src="img/27.png" alt="Logout Icon" class="nav-icon"> Logout</a>
+        </div>
+    </nav>
+    <p>© 2025 Cleaning Services. All rights reserved.</p>
+</footer>
+
+<!-- Scroll to Top Button -->
+<button class="scroll-top" id="scrollToTopBtn" onclick="scrollToTop()">↑</button>
+
+<script>
+    function requestService(serviceType) {
+        alert(`You have requested ${serviceType} service.`);
+    }
+
+    function confirmLogout() {
+        if (confirm("Are you sure you want to log out?")) {
+            window.location.href = '/logout';
+        }
+    }
+
+    // Scroll to top button
+    window.onscroll = function() {
+        var scrollBtn = document.getElementById("scrollToTopBtn");
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            scrollBtn.style.display = "block";
+        } else {
+            scrollBtn.style.display = "none";
+        }
+    }
+
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Comment functionality
+    function submitComment() {
+        var userName = document.getElementById('userName').value;
+        var userComment = document.getElementById('userComment').value;
+
+        if (userName && userComment) {
+            var commentDisplay = document.getElementById('commentsDisplay');
+            var newComment = document.createElement('div');
+            newComment.classList.add('comment-card');
+            newComment.innerHTML = `<strong>${userName}</strong><p>${userComment}</p>`;
+            commentDisplay.appendChild(newComment);
+
+            document.getElementById('userName').value = '';
+            document.getElementById('userComment').value = '';
+        } else {
+            alert("Please enter both your name and a comment.");
+        }
+    }
+</script>
+</body>
+</html>
